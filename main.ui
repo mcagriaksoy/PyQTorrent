@@ -11,7 +11,32 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PyTorrent GUI</string>
+   <string>PyQTorrent v0.1</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.png</normaloff>icon.png</iconset>
+  </property>
+  <property name="toolTip">
+   <string>A free torrent client powered by PyQt!</string>
+  </property>
+  <property name="statusTip">
+   <string>A free torrent client powered by PyQt!</string>
+  </property>
+  <property name="whatsThis">
+   <string>A free torrent client powered by PyQt!</string>
+  </property>
+  <property name="accessibleName">
+   <string>A free torrent client powered by PyQt!</string>
+  </property>
+  <property name="accessibleDescription">
+   <string>A free torrent client powered by PyQt!</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -160,14 +185,23 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_2">
+   <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>151</y>
+      <y>150</y>
       <width>441</width>
       <height>241</height>
      </rect>
+    </property>
+    <property name="tabChangesFocus">
+     <bool>true</bool>
+    </property>
+    <property name="documentTitle">
+     <string/>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

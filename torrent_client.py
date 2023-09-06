@@ -12,20 +12,17 @@ import logging
 import os
 import message
 
+
 class Run(object):
     percentage_completed = -1
     last_log_line = ""
 
-    def __init__(self, torrent_file):
+    def __init__(self):
         try:
-            self.torrent_file = torrent_file
-            if torrent_file == "":
-                logging.error("No torrent file provided!")
-                sys.exit(0)
+            torrent_file = sys.argv[1]
         except IndexError:
             logging.error("No torrent file provided!")
             sys.exit(0)
-            
         self.torrent = torrent.Torrent().load_from_path(torrent_file)
         self.tracker = tracker.Tracker(self.torrent)
 
@@ -37,7 +34,6 @@ class Run(object):
         logging.info("PiecesManager Started")
 
     def start(self):
-        sys.exit(2)
         peers_dict = self.tracker.get_peers_from_trackers()
         self.peers_manager.add_peers(peers_dict.values())
 
@@ -85,7 +81,7 @@ class Run(object):
                     new_progression += len(self.pieces_manager.pieces[i].blocks[j].data)
 
         if new_progression == self.percentage_completed:
-            self._exit_threads()
+            return
 
         number_of_peers = self.peers_manager.unchoked_peers_count()
         percentage_completed = float((float(new_progression) / self.torrent.total_length) * 100)
@@ -103,3 +99,10 @@ class Run(object):
     def _exit_threads(self):
         self.peers_manager.is_active = False
         os._exit(0)
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.ERROR)
+
+    run = Run()
+    run.start()
